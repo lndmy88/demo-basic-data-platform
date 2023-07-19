@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dbt
+  name: dbt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dbt
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dbt
+    spec:
+      containers:
+        - image: lndmy/dbt-image
+          name: dbt
+          resources: {}
+          volumeMounts:
+            - name: hostvol
+              mountPath: /usr/src/dbt      
+      volumes:
+        - name: hostvol
+          hostPath:
+            path: /Users/linhnguyen/Demos/demo-basic-data-platform/dbt #absolute path
